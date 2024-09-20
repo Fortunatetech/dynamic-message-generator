@@ -1,5 +1,13 @@
 import streamlit as st
 from message_generator import generate_single_message
+import os
+
+st.write("GROQ API KEY:", st.secrets["GROQ_API_KEY"])
+
+st.write(
+    "Has environment variables been set:",
+    os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"],
+)
 
 # UI Layout using Streamlit columns
 def main():
@@ -7,7 +15,7 @@ def main():
     st.title("Orenda Message Generator")
 
     # First row: 3 columns for Patient Name, Booked Provider, and Alternative Provider
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([ 2, 2, 2])
 
     with col1:
         patient_name = st.text_input("Patient Name")
@@ -17,16 +25,13 @@ def main():
         alternative_provider = st.text_input("Alternative Provider")
 
     # Second row: Centralized Time and Date fields
-    _, col4, col5, _ = st.columns([1, 2, 2, 1])  # Use column layout to centralize Time & Date
+    col4, col5 = st.columns([ 1, 1])  # Use column layout to centralize Time & Date
     with col4:
         time = st.text_input("Time")
     with col5:
         date = st.text_input("Date")
 
-    # Centralized Generate button
-    # # _, col6, _ = st.columns([3, 2, 3])  # Column layout to centralize the button
-    # # with col6:
-    if st.button("Generate Message"):
+    if st.button("Generate Dynamic Message"):
         if patient_name and booked_provider and alternative_provider and time and date:
             # Generate a single unique message
             unique_message = generate_single_message(

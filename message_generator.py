@@ -2,6 +2,15 @@ import os
 from dotenv import load_dotenv
 from groq import Groq
 from placeholder_replacer import replace_placeholders
+import streamlit as st
+
+st.write("GROQ API KEY:", st.secrets["GROQ_API_KEY"])
+
+st.write(
+    "Has environment variables been set:",
+    os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"],
+)
+
 
 # Load API key from environment variables
 load_dotenv()
@@ -50,4 +59,7 @@ def generate_single_message(patient_name, booked_provider, alternative_provider,
     # Extract and return the single generated response
     generated_message = response.choices[0].message.content.strip()
     
-    return generated_message
+     #Ensure proper spacing and structure
+    formatted_message = generated_message.replace(". ", ".\n")  # Add line breaks after sentences for better readability
+
+    return formatted_message
