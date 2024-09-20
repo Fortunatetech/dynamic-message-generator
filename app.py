@@ -2,16 +2,15 @@ import streamlit as st
 from message_generator import generate_single_message
 import os
 
-st.write("GROQ API KEY:", st.secrets["GROQ_API_KEY"])
+# st.write("GROQ API KEY:", st.secrets["GROQ_API_KEY"])
 
-st.write(
-    "Has environment variables been set:",
-    os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"],
-)
+# st.write(
+#     "Has environment variables been set:",
+#     os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"],
+# )
 
 # UI Layout using Streamlit columns
 def main():
-    st.set_page_config(layout='centered', page_title="Orenda Message Generator")
     st.title("Orenda Message Generator")
 
     # First row: 3 columns for Patient Name, Booked Provider, and Alternative Provider
