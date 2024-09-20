@@ -4,12 +4,9 @@ from groq import Groq
 from placeholder_replacer import replace_placeholders
 import streamlit as st
 
-st.write("GROQ API KEY:", st.secrets["GROQ_API_KEY"])
+st.secrets["GROQ_API_KEY"]
 
-st.write(
-    "Has environment variables been set:",
-    os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"],
-)
+os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"]
 
 
 # Load API key from environment variables
