@@ -5,9 +5,7 @@ from placeholder_replacer import replace_placeholders
 import streamlit as st
 
 st.secrets["GROQ_API_KEY"]
-
 os.environ["GROQ_API_KEY"] == st.secrets["GROQ_API_KEY"]
-
 
 # Load API key from environment variables
 load_dotenv()
@@ -33,13 +31,18 @@ def generate_single_message(patient_name, booked_provider, alternative_provider,
     
     # Construct the prompt to send to Groq
     prompt = f"""
-    You are an expert message rewriter. Your task is to take the following message and generate one unique variation of it that maintains the same meaning but uses different language:
+    You are an expert message rewriter. Your task is to take the following message and generate one unique/
+    variation of it that maintains the same meaning but uses different language:
 
     Message:
     {filled_template}
 
-    Ensure you generate a distinct, human-readable variation with human tone.
+    Considers the below carefully:
+    Ensure you generate a distinct, human-readable message.
+    Ensure your the message you rewrite looks like human wrote it not a machine.
     Ensure You don not add preambles, follow the template given.
+    Ensure the message is not too long.
+    Do not use these kind of words/phrases:  reviewing your intake forms, flexibility
     """
 
     # Call Groq API to generate a unique response

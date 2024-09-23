@@ -3,7 +3,7 @@ from message_generator import generate_single_message
 
 # UI Layout using Streamlit columns
 def main():
-    st.title("Orenda Message Generator")
+    st.title("Orenda Dynamic Message Generator")
 
     # First row: 3 columns for Patient Name, Booked Provider, and Alternative Provider
     col1, col2, col3 = st.columns([ 2, 2, 2])
